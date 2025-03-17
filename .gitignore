@@ -5,7 +5,6 @@
 /tmp
 
 # dependencies
-/node_modules
 npm-debug.log
 
 # IDEs and editors
