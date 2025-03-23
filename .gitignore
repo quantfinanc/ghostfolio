@@ -6,6 +6,7 @@
 
 # dependencies
 npm-debug.log
+/node_modules
 
 # IDEs and editors
 /.idea
@@ -24,7 +25,6 @@ npm-debug.log
 
 # misc
 /.angular/cache
-.env
 .env.prod
 .nx/cache
 .nx/workspace-data
