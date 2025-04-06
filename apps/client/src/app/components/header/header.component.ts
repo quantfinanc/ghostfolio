@@ -28,6 +28,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { ShowAccessTokenDialog } from 'apps/client/src/app/pages/register/show-access-token-dialog/show-access-token-dialog.component';
 import { EMPTY, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
@@ -158,6 +159,25 @@ export class HeaderComponent implements OnChanges {
     }
 
     window.location.reload();
+  }
+
+  public openShowAccessTokenDialog() {
+    const dialogRef = this.dialog.open(ShowAccessTokenDialog, {
+      disableClose: true,
+      height: this.deviceType === 'mobile' ? '98vh' : undefined,
+      width: this.deviceType === 'mobile' ? '100vw' : '30rem'
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this.unsubscribeSubject))
+      .subscribe((authToken) => {
+        if (authToken) {
+          this.tokenStorageService.saveToken(authToken, true);
+
+          this.router.navigate(['/']);
+        }
+      });
   }
 
   public onDateRangeChange(dateRange: DateRange) {

@@ -11,6 +11,7 @@
         <gf-logo class="px-2" [label]="pageTitle" />
       </a>
     </div>
+
     <span class="gf-spacer"></span>
     <ul class="alig-items-center d-flex list-inline m-0 px-2">
       <li class="list-inline-item">
@@ -361,7 +362,7 @@
             'text-decoration-underline': currentRoute === routeAbout
           }"
           [routerLink]="routerLinkAbout"
-          >About</a
+          >About Us</a
         >
       </li>
       @if (hasPermissionForSubscription) {
@@ -399,14 +400,7 @@
           >
         </li>
       }
-      <li class="list-inline-item">
-        <a
-          class="d-none d-sm-block no-min-width p-1"
-          href="https://github.com/ghostfolio/ghostfolio"
-          mat-flat-button
-          ><ion-icon name="logo-github"></ion-icon
-        ></a>
-      </li>
+
       <li class="list-inline-item">
         <button class="d-sm-block" mat-flat-button (click)="openLoginDialog()">
           <ng-container i18n>Sign in</ng-container>
@@ -414,13 +408,14 @@
       </li>
       @if (currentRoute !== 'register' && hasPermissionToCreateUser) {
         <li class="list-inline-item ml-1">
-          <a
+          <button
             class="d-none d-sm-block"
             color="primary"
             mat-flat-button
-            [routerLink]="routerLinkRegister"
-            ><ng-container i18n>Get started</ng-container>
-          </a>
+            (click)="openShowAccessTokenDialog()"
+          >
+            <ng-container i18n>Create Account</ng-container>
+          </button>
         </li>
       }
     </ul>
